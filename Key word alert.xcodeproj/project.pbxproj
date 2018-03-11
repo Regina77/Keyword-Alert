@@ -15,6 +15,16 @@
 		990053F12050336700074982 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990053EF2050336700074982 /* LaunchScreen.storyboard */; };
 		990053FC2050336700074982 /* Key_word_alertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990053FB2050336700074982 /* Key_word_alertTests.swift */; };
 		990054072050336700074982 /* Key_word_alertUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990054062050336700074982 /* Key_word_alertUITests.swift */; };
+		9900542A205087C700074982 /* KeywordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99005429205087C700074982 /* KeywordTableViewController.swift */; };
+		9900542B205087C700074982 /* KeywordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99005429205087C700074982 /* KeywordTableViewController.swift */; };
+		9900542C205087C700074982 /* KeywordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99005429205087C700074982 /* KeywordTableViewController.swift */; };
+		9900542E205089B800074982 /* AddKeywordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9900542D205089B800074982 /* AddKeywordViewController.swift */; };
+		9900542F205089B800074982 /* AddKeywordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9900542D205089B800074982 /* AddKeywordViewController.swift */; };
+		99005430205089B800074982 /* AddKeywordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9900542D205089B800074982 /* AddKeywordViewController.swift */; };
+		9900543420508DF200074982 /* Keywords.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9900543220508DF200074982 /* Keywords.xcdatamodeld */; };
+		9900543520508DF200074982 /* Keywords.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9900543220508DF200074982 /* Keywords.xcdatamodeld */; };
+		9900543620508DF200074982 /* Keywords.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9900543220508DF200074982 /* Keywords.xcdatamodeld */; };
+		991949862051A3B1007BE07D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991949852051A3B1007BE07D /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +59,10 @@
 		990054022050336700074982 /* Key word alertUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Key word alertUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		990054062050336700074982 /* Key_word_alertUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key_word_alertUITests.swift; sourceTree = "<group>"; };
 		990054082050336700074982 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99005429205087C700074982 /* KeywordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordTableViewController.swift; sourceTree = "<group>"; };
+		9900542D205089B800074982 /* AddKeywordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKeywordViewController.swift; sourceTree = "<group>"; };
+		9900543320508DF200074982 /* Keywords.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Keywords.xcdatamodel; sourceTree = "<group>"; };
+		991949852051A3B1007BE07D /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +113,8 @@
 		990053E22050336700074982 /* Key word alert */ = {
 			isa = PBXGroup;
 			children = (
+				9900543120508D8700074982 /* CoreData */,
+				990054242050871200074982 /* VC */,
 				990053E32050336700074982 /* AppDelegate.swift */,
 				990053E52050336700074982 /* ViewController.swift */,
 				990053E72050336700074982 /* Main.storyboard */,
@@ -126,6 +142,24 @@
 				990054082050336700074982 /* Info.plist */,
 			);
 			path = "Key word alertUITests";
+			sourceTree = "<group>";
+		};
+		990054242050871200074982 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				9900542D205089B800074982 /* AddKeywordViewController.swift */,
+				99005429205087C700074982 /* KeywordTableViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		9900543120508D8700074982 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				9900543220508DF200074982 /* Keywords.xcdatamodeld */,
+				991949852051A3B1007BE07D /* CoreDataStack.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +296,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				991949862051A3B1007BE07D /* CoreDataStack.swift in Sources */,
 				990053EC2050336700074982 /* Key_word_alert.xcdatamodeld in Sources */,
+				9900543420508DF200074982 /* Keywords.xcdatamodeld in Sources */,
 				990053E62050336700074982 /* ViewController.swift in Sources */,
+				9900542E205089B800074982 /* AddKeywordViewController.swift in Sources */,
 				990053E42050336700074982 /* AppDelegate.swift in Sources */,
+				9900542A205087C700074982 /* KeywordTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +311,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				990053FC2050336700074982 /* Key_word_alertTests.swift in Sources */,
+				9900543520508DF200074982 /* Keywords.xcdatamodeld in Sources */,
+				9900542B205087C700074982 /* KeywordTableViewController.swift in Sources */,
+				9900542F205089B800074982 /* AddKeywordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +322,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				990054072050336700074982 /* Key_word_alertUITests.swift in Sources */,
+				9900543620508DF200074982 /* Keywords.xcdatamodeld in Sources */,
+				9900542C205087C700074982 /* KeywordTableViewController.swift in Sources */,
+				99005430205089B800074982 /* AddKeywordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,6 +609,16 @@
 			);
 			currentVersion = 990053EB2050336700074982 /* Key_word_alert.xcdatamodel */;
 			path = Key_word_alert.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		9900543220508DF200074982 /* Keywords.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9900543320508DF200074982 /* Keywords.xcdatamodel */,
+			);
+			currentVersion = 9900543320508DF200074982 /* Keywords.xcdatamodel */;
+			path = Keywords.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
