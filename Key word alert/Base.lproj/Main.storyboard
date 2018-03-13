@@ -48,6 +48,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Alerts" id="it1-Et-Ppq">
+                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="6g5-Iq-Z6K">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="IIz-PW-61A" kind="presentation" id="xpq-hb-vY4"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="As6-eU-Qc3">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -231,6 +237,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IgO-Ga-Wm2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-498" y="189"/>
+        </scene>
+        <!--Alerts-->
+        <scene sceneID="xSr-NY-f4k">
+            <objects>
+                <tableViewController id="IIz-PW-61A" customClass="AlertsTableViewController" customModule="Key_word_alert" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" id="TmR-SG-Ywm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="86" id="Qi2-oC-Q4B" customClass="AlertsTableViewCell" customModule="Key_word_alert" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="86"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qi2-oC-Q4B" id="dd3-gE-OJA">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="85.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Qra-hr-vWX">
+                                            <rect key="frame" x="16" y="16" width="343" height="53.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="News Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shZ-HP-bOY">
+                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="31"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.85442529970000003" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qvq-R8-3VZ">
+                                                    <rect key="frame" x="0.0" y="39" width="31" height="14.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="Qra-hr-vWX" secondAttribute="trailing" constant="16" id="O1c-xT-mVg"/>
+                                        <constraint firstAttribute="bottom" secondItem="Qra-hr-vWX" secondAttribute="bottom" constant="16" id="Ohf-PR-Psg"/>
+                                        <constraint firstItem="Qra-hr-vWX" firstAttribute="leading" secondItem="dd3-gE-OJA" secondAttribute="leading" constant="16" id="cm1-Nx-xwI"/>
+                                        <constraint firstItem="Qra-hr-vWX" firstAttribute="top" secondItem="dd3-gE-OJA" secondAttribute="top" constant="16" id="r8C-5m-WvG"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dateLabel" destination="Qvq-R8-3VZ" id="JYl-Ey-qfz"/>
+                                    <outlet property="titleLabel" destination="shZ-HP-bOY" id="dC9-qv-7Sc"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="IIz-PW-61A" id="MB7-yx-R5c"/>
+                            <outlet property="delegate" destination="IIz-PW-61A" id="t2F-wV-vPh"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Alerts" id="yyh-La-uqV"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5dj-nn-gJc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="272.80000000000001" y="901.79910044977521"/>
         </scene>
     </scenes>
 </document>
