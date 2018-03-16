@@ -6,6 +6,8 @@
 //  Copyright © 2018 Borui Zhou. All rights reserved.
 //
 
+// TODO: no table views, just notifications
+
 import UIKit
 import CoreData
 
@@ -21,6 +23,8 @@ class AlertsTableViewController: UITableViewController
         tableView.rowHeight = UITableViewAutomaticDimension
         
         fetchData()
+        FeedParser().searchKeywords()
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
     }
     
     private func fetchData()
@@ -38,11 +42,6 @@ class AlertsTableViewController: UITableViewController
     
     
     // MARK: - Table view data source
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // Return the number of sections
-        return 1
-    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {

@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-// keywords
+
 
 class CoreDataStack {
     var container: NSPersistentContainer{
@@ -26,7 +26,7 @@ class CoreDataStack {
     var managedContext: NSManagedObjectContext{
         return container.viewContext
     }
-        
+    
 }
 
 

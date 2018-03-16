@@ -5,12 +5,17 @@
 //  Created by Borui Zhou on 2018-03-12.
 //  Copyright © 2018 Borui Zhou. All rights reserved.
 //
+
+// TODO: attach url to the title
+
 import Foundation
+import CoreData
 
 struct RSSItem {
     var title: String
     var pubDate: String
-    // TODO: attach url to the title
+    var url: String
+    var content: String
 }
 
 // download xml from a server
@@ -19,20 +24,29 @@ struct RSSItem {
 
 class FeedParser: NSObject, XMLParserDelegate
 {
-    private var rssItems: [RSSItem] = []
+    var rssItems: [RSSItem] = []
     private var currentElement = ""
+    private var currentURL: String = ""
     
     private var currentTitle: String = "" {
         didSet {
             currentTitle = currentTitle.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         }
     }
-
+    
     private var currentPubDate: String = "" {
         didSet {
             currentPubDate = currentPubDate.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         }
     }
+    
+    private var currentContent: String = "" {
+        didSet {
+            currentContent = currentContent.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        }
+    }
+    
+    
     private var parserCompletionHandler: (([RSSItem]) -> Void)?
     
     func parseFeed(url: String, completionHandler: (([RSSItem]) -> Void)?)
@@ -67,14 +81,26 @@ class FeedParser: NSObject, XMLParserDelegate
         if currentElement == "entry" {
             currentTitle = ""
             currentPubDate = ""
+            currentContent = ""
         }
+        
+        if currentElement == "content" {
+            currentURL = attributeDict["xml:base"]!
+        }
+        //print(currentURL)
+        //print("*** \(elementName): \n \(attributeDict) \n \n ")
+        
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String)
     {
+        
+        //print("\(string)\n======")
         switch currentElement {
         case "title": currentTitle += string
         case "published" : currentPubDate += string
+        //TODO: exclude irrelevent contents like iamge description
+        case "content" : currentContent += string
         default: break
         }
     }
@@ -82,8 +108,9 @@ class FeedParser: NSObject, XMLParserDelegate
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
     {
         if elementName == "entry" {
-            let rssItem = RSSItem(title: currentTitle, pubDate: currentPubDate)
+            let rssItem = RSSItem(title: currentTitle, pubDate: currentPubDate, url: currentURL, content: currentContent)
             self.rssItems.append(rssItem)
+            searchKeywords()
         }
     }
     
@@ -94,6 +121,59 @@ class FeedParser: NSObject, XMLParserDelegate
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error)
     {
         print(parseError.localizedDescription)
+    }
+    
+    
+    let count = 0
+    let lastSearchTime = NSDate()
+    let context = CoreDataContainer.sharedInstance.persistentContainer.viewContext
+    
+    
+    // TODO: compare lastSearchTime to pubDate
+    func searchKeywords() -> Int {
+        
+        //clean up old data
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "ThreadInfo")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        
+        do {
+            try context.execute(deleteRequest)
+        } catch {
+            print("Error saving keywords: \(error)")
+        }
+        
+        //fetch data
+        var keyword:[Keyword]? = nil
+        keyword = CoreDataHandler.fetchObject()
+        var numberOfNotifications: Int = 0
+        
+        
+//        let RFC3339DateFormatter = DateFormatter()
+//        RFC3339DateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+//        let date = RFC3339DateFormatter.date(from: threadInfo.pubDate!)
+        
+        // TODO: convert rssItem.pubDate to date
+        for everyKeyword in keyword! {
+            let searchResult = rssItems.filter { $0.title.range(of: everyKeyword.keyword!, options: [.caseInsensitive]) != nil
+                || $0.content.range(of: everyKeyword.keyword!, options: [.caseInsensitive]) != nil }
+            
+            //save searchResult into database
+            for everyResult in searchResult{
+                let threadInfo = ThreadInfo(context: self.context)
+                threadInfo.title = everyResult.title
+                threadInfo.pubDate = everyResult.pubDate
+                threadInfo.keyword = everyKeyword.keyword
+                threadInfo.url = everyResult.url
+                numberOfNotifications += 1
+                
+                do {
+                    try context.save()
+                } catch {
+                    print("Error saving keywords: \(error)")
+                }
+            }
+        }
+        return numberOfNotifications
     }
     
 }
