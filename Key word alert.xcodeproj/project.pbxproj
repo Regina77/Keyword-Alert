@@ -21,6 +21,7 @@
 		9900542E205089B800074982 /* AddKeywordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9900542D205089B800074982 /* AddKeywordViewController.swift */; };
 		9900542F205089B800074982 /* AddKeywordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9900542D205089B800074982 /* AddKeywordViewController.swift */; };
 		99005430205089B800074982 /* AddKeywordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9900542D205089B800074982 /* AddKeywordViewController.swift */; };
+		9905D9D52060144700353331 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9905D9D42060144700353331 /* Notifications.swift */; };
 		991949862051A3B1007BE07D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991949852051A3B1007BE07D /* CoreDataStack.swift */; };
 		992EE1362056F78F00CFC3A0 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992EE1352056F78F00CFC3A0 /* XMLParser.swift */; };
 		992EE1382056F7B000CFC3A0 /* AlertsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992EE1372056F7B000CFC3A0 /* AlertsTableViewCell.swift */; };
@@ -66,6 +67,7 @@
 		990054082050336700074982 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99005429205087C700074982 /* KeywordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordTableViewController.swift; sourceTree = "<group>"; };
 		9900542D205089B800074982 /* AddKeywordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKeywordViewController.swift; sourceTree = "<group>"; };
+		9905D9D42060144700353331 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		991949852051A3B1007BE07D /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		992EE1352056F78F00CFC3A0 /* XMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
 		992EE1372056F7B000CFC3A0 /* AlertsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsTableViewCell.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			children = (
 				992EE1352056F78F00CFC3A0 /* XMLParser.swift */,
 				992EE1372056F7B000CFC3A0 /* AlertsTableViewCell.swift */,
+				9905D9D42060144700353331 /* Notifications.swift */,
 				992EE1392056F7CB00CFC3A0 /* AlertsTabelViewController.swift */,
 				998B40C5205C4B6100C606F7 /* CoreDataHandler.swift */,
 			);
@@ -395,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9905D9D52060144700353331 /* Notifications.swift in Sources */,
 				992EE13A2056F7CB00CFC3A0 /* AlertsTabelViewController.swift in Sources */,
 				992EE14B20584F2A00CFC3A0 /* Keywords.xcdatamodeld in Sources */,
 				998B40C6205C4B6100C606F7 /* CoreDataHandler.swift in Sources */,

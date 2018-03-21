@@ -23,7 +23,7 @@ class AlertsTableViewController: UITableViewController
         tableView.rowHeight = UITableViewAutomaticDimension
         
         fetchData()
-        FeedParser().searchKeywords()
+        //FeedParser().searchKeywords()
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
     }
     

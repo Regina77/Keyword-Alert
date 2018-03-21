@@ -100,7 +100,11 @@ class FeedParser: NSObject, XMLParserDelegate
         case "title": currentTitle += string
         case "published" : currentPubDate += string
         //TODO: exclude irrelevent contents like iamge description
-        case "content" : currentContent += string
+        case "content" :
+            //if currentElement !=
+            currentContent += string
+            //currentContent = currentContent.deleteHTML()
+            
         default: break
         }
     }
@@ -144,7 +148,7 @@ class FeedParser: NSObject, XMLParserDelegate
         
         //fetch data
         var keyword:[Keyword]? = nil
-        keyword = CoreDataHandler.fetchObject()
+        keyword = CoreDataHandler.fetchKeyword()
         var numberOfNotifications: Int = 0
         
         

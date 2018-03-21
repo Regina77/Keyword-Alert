@@ -39,5 +39,16 @@ class CoreDataContainer {
         }
     }
     
+    func loadItems () {
+        let context = persistentContainer.viewContext
+        let request : NSFetchRequest<ThreadInfo> = ThreadInfo.fetchRequest()
+        do {
+            try context.fetch(request)
+        } catch {
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+    }
+    
 }
 

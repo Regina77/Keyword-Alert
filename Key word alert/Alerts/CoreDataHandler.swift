@@ -12,7 +12,7 @@ import CoreData
 
 class CoreDataHandler: NSObject{
     
-    class func fetchObject() -> [Keyword]? {
+    class func fetchKeyword() -> [Keyword]? {
         let context = CoreDataContainer.sharedInstance.persistentContainer.viewContext
         var keyword:[Keyword]? = nil
         do {
@@ -22,7 +22,16 @@ class CoreDataHandler: NSObject{
             return keyword
         }
     }
-    
+    class func fetchThreadInfo() -> [ThreadInfo]? {
+        let context = CoreDataContainer.sharedInstance.persistentContainer.viewContext
+        var threadInfo:[ThreadInfo]? = nil
+        do {
+            threadInfo = try context.fetch(ThreadInfo.fetchRequest())
+            return threadInfo
+        } catch  {
+            return threadInfo
+        }
+    }
 }
 
 

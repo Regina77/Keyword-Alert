@@ -9,6 +9,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 class KeywordTableViewController: UITableViewController {
     
@@ -22,7 +23,7 @@ class KeywordTableViewController: UITableViewController {
         
         // Request
         let request: NSFetchRequest<Keyword> = Keyword.fetchRequest()
-        let sortDescriptors = NSSortDescriptor(key: "keyword", ascending: true)
+        let sortDescriptors = NSSortDescriptor(key: "keyword", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))
         
         // Init
         request.sortDescriptors = [sortDescriptors]
@@ -37,6 +38,21 @@ class KeywordTableViewController: UITableViewController {
             try resultsController.performFetch()
         } catch {
             print("Perform fatal error: \(error)")
+        }
+        
+        // notfications
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (success, error) in
+            if error != nil {
+                print("Authorization Unsucessful!")
+            } else {
+                print("Authorization Sucessful!")
+            }
+        }
+        
+        timeNotification(inSeconds: 3000){(success) in
+            if success {
+                print("Successfully Notified")
+            }
         }
     }
 
@@ -114,5 +130,38 @@ extension KeywordTableViewController: NSFetchedResultsControllerDelegate{
             break
         }
     }
+    
+    func timeNotification(inSeconds: TimeInterval, completion: @escaping (_ Success: Bool) -> ()) {
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: inSeconds, repeats: false)
+        
+        let content = UNMutableNotificationContent()
+        
+//        init(contentTitle : String)
+//        
+//        init(contentBody : String)
+//        
+        var threadInfo:[ThreadInfo]? = nil
+        threadInfo = CoreDataHandler.fetchThreadInfo()
+        
+        for everyThreadInfo in threadInfo! {
+            content.title = "You have an alert for your keyword \"\(everyThreadInfo.keyword ?? " " )\""
+            //content.subtitle = "There is a match"
+            content.body = everyThreadInfo.title!
+            content.sound = UNNotificationSound.default()
+            
+        }
+        
+        let request = UNNotificationRequest(identifier: "customNotification", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if error == nil {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+    }
+    
 }
 

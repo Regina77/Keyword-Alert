@@ -15,7 +15,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Alerts-->
+        <!--Keywords-->
         <scene sceneID="Nvh-gi-eId">
             <objects>
                 <tableViewController id="uiC-BR-E7u" customClass="KeywordTableViewController" customModule="Key_word_alert" customModuleProvider="target" sceneMemberID="viewController">
@@ -47,10 +47,11 @@
                             <outlet property="delegate" destination="uiC-BR-E7u" id="X9C-Yq-1tE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Alerts" id="it1-Et-Ppq">
+                    <navigationItem key="navigationItem" title="Keywords" id="it1-Et-Ppq">
                         <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="6g5-Iq-Z6K">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
+                                <action selector="sendNotification:" destination="Iuq-Ux-tXX" id="JyN-NI-liQ"/>
                                 <segue destination="IIz-PW-61A" kind="presentation" id="xpq-hb-vY4"/>
                             </connections>
                         </barButtonItem>
@@ -63,6 +64,7 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XxI-Nq-Oxz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Iuq-Ux-tXX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="272.80000000000001" y="189.3553223388306"/>
         </scene>
@@ -167,24 +169,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cVa-Af-Sut">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="All forums" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cVa-Af-Sut">
                                 <rect key="frame" x="16" y="182" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RXv-Wn-BrE">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Every two hours" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RXv-Wn-BrE">
                                 <rect key="frame" x="16" y="253" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I0a-ls-2Bm">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="30 days " borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I0a-ls-2Bm">
                                 <rect key="frame" x="16" y="325" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -230,6 +232,9 @@
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BYm-pP-fCW">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="uiC-BR-E7u" kind="relationship" relationship="rootViewController" id="4DC-H7-uQf"/>
                     </connections>
@@ -291,7 +296,10 @@
                             <outlet property="delegate" destination="IIz-PW-61A" id="t2F-wV-vPh"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Alerts" id="yyh-La-uqV"/>
+                    <navigationItem key="navigationItem" title="Alerts" id="yyh-La-uqV">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="lk4-DN-e68"/>
+                    </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5dj-nn-gJc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
