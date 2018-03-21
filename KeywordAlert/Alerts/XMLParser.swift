@@ -11,7 +11,7 @@
 import Foundation
 import CoreData
 import HTMLString
-
+import SwiftSoup
 
 struct RSSItem {
     var title: String
@@ -29,6 +29,7 @@ class FeedParser: NSObject, XMLParserDelegate
     var rssItems: [RSSItem] = []
     private var currentElement = ""
     private var currentURL: String = ""
+    var mainContent: String = ""
     
     private var currentTitle: String = "" {
         didSet {
@@ -99,17 +100,30 @@ class FeedParser: NSObject, XMLParserDelegate
         
         //print("\(string)\n======")
         switch currentElement {
+            
         case "title":
             currentTitle += string
             currentTitle = currentTitle.removingHTMLEntities
-        case "published" : currentPubDate += string
+            
+        case "published" :
+            currentPubDate += string
+            
         //TODO: exclude irrelevent contents like iamge description
         case "content" :
             //if currentElement !=
             currentContent += string
             currentContent = currentContent.removingHTMLEntities
-            print(currentContent)
-            //currentContent = currentContent.deleteHTML()
+            
+            //mainContent is the currentContent without irrelevant strings like tag names, url, etc
+            do {
+                let doc: Document = try! SwiftSoup.parse(currentContent)
+                mainContent = try! doc.body()!.text()
+            } catch Exception.Error(let type, let message) {
+                print(message)
+            } catch {
+                print("error")
+            }
+
             
         default: break
         }
@@ -118,9 +132,10 @@ class FeedParser: NSObject, XMLParserDelegate
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
     {
         if elementName == "entry" {
-            let rssItem = RSSItem(title: currentTitle, pubDate: currentPubDate, url: currentURL, content: currentContent)
+            let rssItem = RSSItem(title: currentTitle, pubDate: currentPubDate, url: currentURL, content: mainContent)
             self.rssItems.append(rssItem)
             searchKeywords()
+            print(mainContent)
         }
     }
     
