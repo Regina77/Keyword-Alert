@@ -10,6 +10,8 @@
 
 import Foundation
 import CoreData
+import HTMLString
+
 
 struct RSSItem {
     var title: String
@@ -97,12 +99,16 @@ class FeedParser: NSObject, XMLParserDelegate
         
         //print("\(string)\n======")
         switch currentElement {
-        case "title": currentTitle += string
+        case "title":
+            currentTitle += string
+            currentTitle = currentTitle.removingHTMLEntities
         case "published" : currentPubDate += string
         //TODO: exclude irrelevent contents like iamge description
         case "content" :
             //if currentElement !=
             currentContent += string
+            currentContent = currentContent.removingHTMLEntities
+            print(currentContent)
             //currentContent = currentContent.deleteHTML()
             
         default: break

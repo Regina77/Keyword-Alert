@@ -137,15 +137,19 @@ extension KeywordTableViewController: NSFetchedResultsControllerDelegate{
         
         let content = UNMutableNotificationContent()
         
-//        init(contentTitle : String)
-//        
-//        init(contentBody : String)
-//        
+//        init(_ value: Notifications) {
+//            self = NSNotification.Name(value.rawValue)
+//        }
+//
+//        init(contentBody : String) {
+//
+//        }
+        
         var threadInfo:[ThreadInfo]? = nil
         threadInfo = CoreDataHandler.fetchThreadInfo()
         
         for everyThreadInfo in threadInfo! {
-            content.title = "You have an alert for your keyword \"\(everyThreadInfo.keyword ?? " " )\""
+           
             //content.subtitle = "There is a match"
             content.body = everyThreadInfo.title!
             content.sound = UNNotificationSound.default()
