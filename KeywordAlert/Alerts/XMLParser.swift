@@ -135,7 +135,6 @@ class FeedParser: NSObject, XMLParserDelegate
             let rssItem = RSSItem(title: currentTitle, pubDate: currentPubDate, url: currentURL, content: mainContent)
             self.rssItems.append(rssItem)
             searchKeywords()
-            print(mainContent)
         }
     }
     

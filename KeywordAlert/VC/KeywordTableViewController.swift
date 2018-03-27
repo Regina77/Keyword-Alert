@@ -49,7 +49,7 @@ class KeywordTableViewController: UITableViewController {
             }
         }
         
-        timeNotification(inSeconds: 3000){(success) in
+        timeNotification(inSeconds: 3){(success) in
             if success {
                 print("Successfully Notified")
             }
@@ -137,33 +137,28 @@ extension KeywordTableViewController: NSFetchedResultsControllerDelegate{
         
         let content = UNMutableNotificationContent()
         
-//        init(_ value: Notifications) {
-//            self = NSNotification.Name(value.rawValue)
-//        }
-//
-//        init(contentBody : String) {
-//
-//        }
-        
         var threadInfo:[ThreadInfo]? = nil
         threadInfo = CoreDataHandler.fetchThreadInfo()
         
         for everyThreadInfo in threadInfo! {
            
-            //content.subtitle = "There is a match"
+            content.title = "You have an alert for your keyword \"\(everyThreadInfo.keyword ?? "")\""
             content.body = everyThreadInfo.title!
+            //content.attachments = everyThreadInfo.url!
+            //content.userInfo = ["url" : "http://www.baidu.com"]
             content.sound = UNNotificationSound.default()
             
-        }
-        
-        let request = UNNotificationRequest(identifier: "customNotification", content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request) { (error) in
-            if error == nil {
-                completion(true)
-            } else {
-                completion(false)
+            let request = UNNotificationRequest(identifier: everyThreadInfo.title!, content: content, trigger: trigger)
+            
+            UNUserNotificationCenter.current().add(request) { (error) in
+                if error == nil {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
             }
+
+            
         }
     }
     
